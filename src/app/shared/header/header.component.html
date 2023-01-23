@@ -1,0 +1,23 @@
+<div class="header">
+    <div class="header__logo">
+        <img src="../../../assets/Letter.png" alt="logo">
+        <h1>Shopéame!</h1>
+    </div>
+    
+    <nav class="header__navbar">
+        <div (click)="onButtonClick()" class="header__navbar--box" routerLink="/">
+            <img src="../../../assets/home.png" alt="home">
+            <p>Home</p>
+        </div>
+        
+        <div class="header__navbar--box" routerLink="/products">
+            <img src="../../../assets/products.png" alt="products">
+            <p>Prods.</p>
+        </div>
+    
+        <div class="header__navbar--box" routerLink="/formulary">
+            <img src="../../../assets/gestion.png" alt="managem">
+            <p>manag.</p>
+        </div>
+    </nav>
+</div>

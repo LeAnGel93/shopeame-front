@@ -1,0 +1,26 @@
+.footer{
+    display: flex;
+    height: 10x;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+    background-color: #333333;
+
+    &__follow{
+        color:#FFFFFF;
+        padding-top: 30px;
+        padding-bottom: 15px;
+        font-size: 14px;
+    }
+    &__social{
+        color:#FFFFFF;
+        font-size: 14px;
+        word-spacing: 15px;
+    }
+    &__copyright{
+        color:#FFFFFF;
+        padding-top: 40px;
+        padding-bottom: 50px;
+        font-size: 14px;
+    }
+}

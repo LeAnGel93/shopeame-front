@@ -1,0 +1,38 @@
+<div class="products">
+    <div class="products__whiteBox">
+        
+        <div class="products__whiteBox--header">
+            
+        <div class="products__whiteBox--list"><h2>Listado de Productos ({{productsList.length}})</h2></div>
+        <div class="products__whiteBox--corner">
+            <div class="products__whiteBox--corner-buttons">
+                <div class="products__whiteBox--corner-buttons-left">
+                    <img src="../../../assets/leftBtn.png" alt="coso">
+                </div>
+                <div class="products__whiteBox--corner-buttons-right">
+                    <img src="../../../assets/rightBtn.png" alt="">
+                </div>
+            </div>
+            <div class="products__whiteBox--corner-search">
+                <input type="text" #filtro (input)="filter(filtro.value)" placeholder="Buscador"/>
+            </div>
+        </div>
+        </div>
+
+        <div class="products__whiteBox--card">
+            <div class="card" *ngFor="let item of paintedProducts">
+                <div class="card__img"><img src="{{item.image}}" alt="shoes"></div>
+                <div class="card__name"><p>{{item.name}}</p></div>
+                <div class="card__desc"><h4>{{item.description}}</h4></div>
+                <div class="card__price"><h2>${{item.price}}</h2></div>  
+                <div class="card__bot"> 
+                    <div class="card__bot--stars">{{item.stars}}</div>
+                    <div class="card__bot--btn">
+                        <button ng-click= "ShowHide" routerLink="/formulary/{{item.id}}">Editar</button>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>

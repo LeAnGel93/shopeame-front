@@ -1,0 +1,53 @@
+<div class="management">
+    <div class="management__whiteBox">
+        <div class="management__whiteBox--title"> 
+            <h2>Creación/edición de productos</h2>
+        </div>
+        <div class="management__whiteBox--box">
+            <div class="management__whiteBox--box-fieldbox">
+                <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+                    <div class="management__whiteBox--box-fieldbox-field">
+                <p>Ruta de la imagen:</p>
+                <input formControlName="image" type="text" placeholder="Por ej: http://cositas.com/img.jpg">
+                    </div>
+                    <div class="management__whiteBox--box-fieldbox-field">
+                <p>Nombre del producto:</p>
+                <input formControlName="name" type="text" placeholder="Por ej: Tiesto para planta">
+                    </div>
+                    <div class="management__whiteBox--box-fieldbox-field">
+                <p>Descripción:</p>
+                <input formControlName="description" type="text" placeholder="Por ej: Lo mas vendido de este mes">
+                    </div>
+                    <div class="management__whiteBox--box-fieldbox-field">
+                <p>Precio:</p>
+                <input formControlName="price" type="number" placeholder="Por ej: 9,50">
+                    </div>
+                    <div class="management__whiteBox--box-fieldbox-field">
+                <p>Opiniones:</p>
+                <input formControlName="stars" type="text" placeholder="Por ej: 4,28">
+                    </div>
+                <div class="management__whiteBox--box-fieldbox-btn"><button type="submit">Guardar</button></div>
+            </form>
+            </div>
+
+            <!-- <div><hr class="management__whiteBox--box--line"></div> -->
+            <div class="management__whiteBox--box--line"></div>
+
+            <div class="management__whiteBox--rightSide">
+                <div class="management__whiteBox--rightSide-card">
+                    <div class="management__whiteBox--rightSide-card-img"><img src="{{newProduct?.image}}" alt=""></div>
+                    <div class="management__whiteBox--rightSide-card-name"><p>{{newProduct?.name}}</p></div>
+                    <div class="management__whiteBox--rightSide-card-desc"><h4>{{newProduct?.description}}</h4></div>
+                    <div class="management__whiteBox--rightSide-card-price"><h2>{{newProduct?.price}}</h2></div>  
+                    <div class="management__whiteBox--rightSide-card-bot"> 
+                        <div class="management__whiteBox--rightSide-card-bot-stars">{{newProduct?.stars}}</div>
+                        <div class="management__whiteBox--rightSide-card-bot-btn">
+                            <button (click)="deleteProduct()" ng-hide = "isVisible" >Eliminar</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
