@@ -9,7 +9,7 @@ import { FormpageComponent } from './pages/formpage/formpage.component';
 import { HeaderComponent } from './shared/header/header.component';
 import { FooterComponent } from './shared/footer/footer.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UpdateComponentComponent } from './shared/update-component/update-component.component';
+
 
 @NgModule({
   declarations: [
@@ -19,7 +19,6 @@ import { UpdateComponentComponent } from './shared/update-component/update-compo
     FormpageComponent,
     HeaderComponent,
     FooterComponent,
-    UpdateComponentComponent
   ],
   imports: [
     BrowserModule,

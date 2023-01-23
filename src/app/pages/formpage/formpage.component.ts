@@ -9,9 +9,11 @@ import { ProductsService } from 'src/app/services/products.service';
 })
 export class FormpageComponent implements OnInit {
   isVisible= false;
+  isLoaded = false;
+  idProduct: any;
   
   id!: number;
-  productForm!: FormGroup;
+  productForm!: FormGroup; 
   newProduct: any = {
     image: '',
     name:'' ,
@@ -19,38 +21,76 @@ export class FormpageComponent implements OnInit {
     price:'',
     stars: ''
   }
-  constructor(private formBuilder: FormBuilder, private productService: ProductsService, private activatedRoute: ActivatedRoute, private router: Router ){}
+  constructor(
+    private formBuilder: FormBuilder,
+    private productService: ProductsService,
+    private route: ActivatedRoute,
+    private router: Router
+    ) {}
 
-  ngOnInit(): void {
-    // this.activatedRoute.paramMap.subscribe(() => {
-    //   this.id = params.get('id');
-    //   this.productService.getProducts(this.id).subscribe()
-    // })
-    this.productForm = this.formBuilder.group({
-      name:['', [Validators.required]],
-      price:['', [Validators.required]],
-      description:['', [Validators.required]],
-      stars:['', [Validators.required]], 
-      image:['']
+  ngOnInit(): void { 
+
+    this.route.paramMap.subscribe((params) => { 
+      this.idProduct = params.get('id')
+      if(this.idProduct){
+        this.getProduct(params.get('id'))
+      } else {
+        this.initProductData({
+        img: '',
+        name:'',
+        description:'',
+        price:'',
+        stars:''
+        })
+      }
     })
 
-    this.productForm.valueChanges.subscribe(changes =>{
+    
+  } 
+
+ initProductData(product: any){
+    this.isLoaded = true;
+    this.newProduct = product
+    this.productForm = this.formBuilder.group({
+      name:[product.name],
+      price:[product.price],
+      description:[product.description],
+      stars:[product.stars], 
+      image:[product.image]
+      
+    })
+    this.productForm.valueChanges.subscribe(changes => { //
       this.newProduct = changes
     })
+ }
 
-
+  getProduct(id: any) {
+      this.productService
+      .getProduct(id)
+      .subscribe((product) => {
+        console.log(product)
+        this.initProductData(product)
+      });
   } 
+
+
   onSubmit(){
     console.log(this.newProduct);
-    this.productService.postProducts(this.newProduct).subscribe((data) =>{
-      console.log(data);
-    })
+    if (this.idProduct) {
+      this.productService
+      .putProduct(this.idProduct, this.productForm.value)
+      .subscribe(() =>{});
+    } else {
+      this.productService
+      .postProducts(this.newProduct)
+      .subscribe(() =>{});
+    }
     this.productForm.reset();
  
   }
 
   deleteProduct(){
-    this.productService.deleteProduct(this.id).subscribe((data: any) => {})
+    this.productService.deleteProduct(this.idProduct).subscribe((data: any) => {})
     this.router.navigate(['/'])
   }
 

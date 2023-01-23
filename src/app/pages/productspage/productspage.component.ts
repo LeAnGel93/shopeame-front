@@ -13,8 +13,10 @@ export class ProductspageComponent implements OnInit {
   // }
 
   productsList: any[] = [];
- paintedProducts: any[] = [];
-  constructor (private productService: ProductsService){}
+  paintedProducts: any[] = [];
+  constructor (
+    private productService: ProductsService
+    ){}
   ngOnInit(): void {
       this.productService.getProducts().subscribe((data: any) => {
       console.log(data);
@@ -23,8 +25,10 @@ export class ProductspageComponent implements OnInit {
       })
     } 
 
+
+
     filter(name: string){
-      let filteredProducts = this.productsList.filter((product) => product.name.includes(name))
+      let filteredProducts = this.productsList.filter((product) => product.name.toLowerCase().includes(name))
       this.paintedProducts = [...filteredProducts];
     }
   }
